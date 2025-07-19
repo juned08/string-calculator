@@ -5,7 +5,8 @@ try {
   console.assert(add('1') === 1, `Failed: Input :"1" should return 1`);
   console.assert(add('1,2') === 3, `Failed: Input :"1,2" should return 3`);
   console.assert(add('1,2,3') === 6, `Failed: Input :"1,2,3" should return 6`);
-
+  console.assert(add('1\n2,3') === 6, `Failed: Input :"1\n2,3" should return 6`);
+  
 
   
 } catch (error) {
