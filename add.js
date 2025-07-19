@@ -3,6 +3,12 @@ export function add(numbers) {
 
   let delimiter = /,|\n/;
 
+  if(numbers.startsWith('//')){
+    const parts = numbers.split("\n");
+    delimiter = new RegExp(parts[0].slice(2));
+    numbers = parts[1];
+  }
+
   const numList = numbers.split(delimiter).map(Number);
   
   return numList.reduce((a ,b) => a + b);
