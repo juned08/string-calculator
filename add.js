@@ -10,6 +10,11 @@ export function add(numbers) {
   }
 
   const numList = numbers.split(delimiter).map(Number);
-  
+  const negativeNum = numList.filter((n) => n < 0);
+
+  if(negativeNum.length > 0) {
+    throw new Error("negative numbers not allowed " + negativeNum.join(","));
+  }
+
   return numList.reduce((a ,b) => a + b);
 }
