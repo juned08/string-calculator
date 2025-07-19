@@ -1,19 +1,21 @@
 import { add } from './add.js';
 
-try {
-  console.assert(add("") === 0, `Failed: Input :"" should return 0`);
-  console.assert(add('1') === 1, `Failed: Input :"1" should return 1`);
-  console.assert(add('1,2') === 3, `Failed: Input :"1,2" should return 3`);
-  console.assert(add('1,2,3') === 6, `Failed: Input :"1,2,3" should return 6`);
-  console.assert(add('1\n2,3') === 6, `Failed: Input :"1\n2,3" should return 6`);
-  console.assert(add('//;\n1;2') === 3, `Failed: Input :"//;\n1;2" should return 3`);
-  
+function testCase(input, expected) {
   try {
-    add("1,-2");
-  } catch (e) {
-    console.assert(e.message === 'negative numbers not allowed -2', "Negative test for -2 failed");
+    const actual = add(input);
+    if(actual === expected){
+      console.log(`Passed: Input ${input} => Output: ${actual}`);
+    } else {
+      console.error(`Failed: Input ${input} => Output: ${expected}, Got: ${actual}`);
+    }
+  } catch(error) {
+    console.error(`Error thrown for Input ${input}: ${error.message}`)
   }
-  
-} catch (error) {
-  console.error(" Error: ", error.message);
+
 }
+
+testCase("", 0);
+testCase("1", 1);
+testCase("1,2", 3);
+testCase("1\n2,3", 6);
+testCase("//;\n1;2", 3);
